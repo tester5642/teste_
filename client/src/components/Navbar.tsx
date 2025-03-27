@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { projects } from '../data/projects';
 import { articles } from '../data/articles';
@@ -7,29 +7,6 @@ import { Home } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null);
-      }
-    }
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleDropdown = (dropdownName: string) => {
-    if (activeDropdown === dropdownName) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(dropdownName);
-    }
-  };
 
   return (
     <header className="bg-bg-dark border-b border-primary/20 fixed top-0 left-0 right-0 w-full z-[1000] backdrop-blur-sm shadow-md">
@@ -63,57 +40,51 @@ const Navbar: React.FC = () => {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8 text-lg" ref={dropdownRef}>
+        <div className="hidden md:flex space-x-8 text-lg">
           {/* Projects Dropdown */}
-          <div className="nav-item relative">
-            <div 
-              className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/projects' ? 'text-white' : ''}`}
-              onClick={() => toggleDropdown('projects')}
-            >
-              Projetos
-            </div>
+          <div className="nav-item relative group">
+            <Link href="/projects">
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/projects' ? 'text-white' : ''}`}>
+                Projetos
+              </div>
+            </Link>
             
             {/* Dropdown menu */}
-            {activeDropdown === 'projects' && (
-              <div className="absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
-                <div className="custom-scrollbar py-2">
-                  {projects.map((project) => (
-                    <Link key={project.id} href={`/projects/${project.id}`} onClick={() => setActiveDropdown(null)}>
-                      <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
-                        <div className="font-medium text-primary">{project.title}</div>
-                        <div className="text-sm text-gray-300 mt-1">{project.description}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
+              <div className="custom-scrollbar py-2">
+                {projects.map((project) => (
+                  <Link key={project.id} href={`/projects/${project.id}`}>
+                    <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
+                      <div className="font-medium text-primary">{project.title}</div>
+                      <div className="text-sm text-gray-300 mt-1">{project.description}</div>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            )}
+            </div>
           </div>
 
           {/* Articles Dropdown */}
-          <div className="nav-item relative">
-            <div 
-              className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/articles' ? 'text-white' : ''}`}
-              onClick={() => toggleDropdown('articles')}
-            >
-              Artigos
-            </div>
+          <div className="nav-item relative group">
+            <Link href="/articles">
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/articles' ? 'text-white' : ''}`}>
+                Artigos
+              </div>
+            </Link>
             
             {/* Dropdown menu */}
-            {activeDropdown === 'articles' && (
-              <div className="absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
-                <div className="custom-scrollbar py-2">
-                  {articles.map((article) => (
-                    <Link key={article.id} href={`/articles/${article.id}`} onClick={() => setActiveDropdown(null)}>
-                      <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
-                        <div className="font-medium text-primary">{article.title}</div>
-                        <div className="text-sm text-gray-300 mt-1">{article.description}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
+              <div className="custom-scrollbar py-2">
+                {articles.map((article) => (
+                  <Link key={article.id} href={`/articles/${article.id}`}>
+                    <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
+                      <div className="font-medium text-primary">{article.title}</div>
+                      <div className="text-sm text-gray-300 mt-1">{article.description}</div>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            )}
+            </div>
           </div>
 
           {/* Resume Link */}
@@ -178,6 +149,21 @@ const Navbar: React.FC = () => {
         
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(164, 255, 0, 1);
+        }
+        
+        /* Dropdown animation */
+        .dropdown-menu {
+            transform-origin: top center;
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s ease-out;
+            transform: scaleY(0);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            transform: scaleY(1);
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Home icon hover effect */
