@@ -43,8 +43,8 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex space-x-8 text-lg">
           {/* Projects Dropdown */}
           <div className="nav-item relative group">
-            <Link href="/projects">
-              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/projects' ? 'text-white' : ''}`}>
+            <Link href="/projetos">
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/projetos' ? 'text-white' : ''}`}>
                 Projetos
               </div>
             </Link>
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
             <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
               <div className="custom-scrollbar py-2">
                 {projects.map((project) => (
-                  <Link key={project.id} href={`/projects/${project.id}`}>
+                  <Link key={project.id} href={`/projetos/${project.id}`}>
                     <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
                       <div className="font-medium text-primary">{project.title}</div>
                       <div className="text-sm text-gray-300 mt-1">{project.description}</div>
@@ -66,8 +66,8 @@ const Navbar: React.FC = () => {
 
           {/* Articles Dropdown */}
           <div className="nav-item relative group">
-            <Link href="/articles">
-              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/articles' ? 'text-white' : ''}`}>
+            <Link href="/artigos">
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/artigos' ? 'text-white' : ''}`}>
                 Artigos
               </div>
             </Link>
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
             <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
               <div className="custom-scrollbar py-2">
                 {articles.map((article) => (
-                  <Link key={article.id} href={`/articles/${article.id}`}>
+                  <Link key={article.id} href={`/artigos/${article.id}`}>
                     <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
                       <div className="font-medium text-primary">{article.title}</div>
                       <div className="text-sm text-gray-300 mt-1">{article.description}</div>
@@ -88,15 +88,15 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Resume Link */}
-          <Link href="/resume">
-            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/resume' ? 'text-white' : ''}`}>
+          <Link href="/curriculo">
+            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/curriculo' ? 'text-white' : ''}`}>
               Currículo
             </div>
           </Link>
           
           {/* About Me Link */}
-          <Link href="/about">
-            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/about' ? 'text-white' : ''}`}>
+          <Link href="/sobre">
+            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/sobre' ? 'text-white' : ''}`}>
               Sobre mim
             </div>
           </Link>
@@ -106,22 +106,22 @@ const Navbar: React.FC = () => {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-bg-dark border-b border-primary/20 z-[1001] shadow-lg backdrop-blur-sm">
             <div className="flex flex-col p-4">
-              <Link href="/projects">
+              <Link href="/projetos">
                 <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Projetos
                 </div>
               </Link>
-              <Link href="/articles">
+              <Link href="/artigos">
                 <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Artigos
                 </div>
               </Link>
-              <Link href="/resume">
+              <Link href="/curriculo">
                 <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Currículo
                 </div>
               </Link>
-              <Link href="/about">
+              <Link href="/sobre">
                 <div className="text-primary hover:text-white font-medium py-3 cursor-pointer">
                   Sobre mim
                 </div>

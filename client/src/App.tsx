@@ -9,16 +9,20 @@ import Projects from "./pages/Projects";
 import Articles from "./pages/Articles";
 import Resume from "./pages/Resume";
 import About from "./pages/About";
+import ProjectDetail from "./pages/ProjectDetail";
+import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/projects" component={Projects} />
-      <Route path="/articles" component={Articles} />
-      <Route path="/resume" component={Resume} />
-      <Route path="/about" component={About} />
+      <Route path="/projetos" component={Projects} />
+      <Route path="/projetos/:id" component={ProjectDetail} />
+      <Route path="/artigos" component={Articles} />
+      <Route path="/artigos/:id" component={ArticleDetail} />
+      <Route path="/curriculo" component={Resume} />
+      <Route path="/sobre" component={About} />
       <Route component={NotFound} />
     </Switch>
   );

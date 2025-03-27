@@ -34,7 +34,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {getIconComponent(project.iconName)}
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold text-primary mb-2">{project.title}</h3>
+        <Link href={`/projetos/${project.id}`}>
+          <h3 className="text-xl font-bold text-primary mb-2 cursor-pointer hover:underline">{project.title}</h3>
+        </Link>
         <p className="text-gray-300 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech, index) => (
@@ -43,10 +45,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           ))}
         </div>
-        <Link href={`/projects/${project.id}`}>
-          <a className="inline-block px-4 py-2 bg-primary text-bg-dark font-medium rounded hover:bg-primary-dark transition-colors">
-            Ver detalhes
-          </a>
+        <Link href={`/projetos/${project.id}`} className="inline-block px-4 py-2 bg-primary text-bg-dark font-medium rounded hover:bg-primary-dark transition-colors">
+          Ver detalhes
         </Link>
       </div>
     </div>

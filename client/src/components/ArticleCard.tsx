@@ -9,7 +9,9 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   return (
     <div className="bg-secondary-dark/90 rounded-lg p-6 border border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow">
-      <h3 className="text-xl font-bold text-primary mb-2">{article.title}</h3>
+      <Link href={`/artigos/${article.id}`}>
+        <h3 className="text-xl font-bold text-primary mb-2 cursor-pointer hover:underline">{article.title}</h3>
+      </Link>
       <p className="text-gray-400 mb-4">
         Publicado em: {article.publishDate} • {article.readTime} min de leitura
       </p>
@@ -21,10 +23,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           </span>
         ))}
       </div>
-      <Link href={`/articles/${article.id}`}>
-        <a className="inline-block px-4 py-2 bg-primary text-bg-dark font-medium rounded hover:bg-primary-dark transition-colors">
-          Ler artigo
-        </a>
+      <Link href={`/artigos/${article.id}`} className="inline-block px-4 py-2 bg-primary text-bg-dark font-medium rounded hover:bg-primary-dark transition-colors">
+        Ler artigo
       </Link>
     </div>
   );
