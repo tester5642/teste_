@@ -29,7 +29,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow">
+        {/* Added pt-20 to account for fixed navbar */}
+        <main className="flex-grow pt-20">
           <Router />
         </main>
         <Footer />

@@ -9,13 +9,13 @@ const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-bg-dark border-b border-primary/20 sticky top-0 z-50">
+    <header className="bg-bg-dark border-b border-primary/20 fixed top-0 left-0 right-0 w-full z-[1000] backdrop-blur-sm shadow-md">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <a className="home-icon text-primary hover:text-white transition-colors">
+          <div className="home-icon text-primary hover:text-white transition-colors cursor-pointer">
             <Home className="w-8 h-8" />
-          </a>
+          </div>
         </Link>
 
         {/* Mobile Menu Toggle */}
@@ -44,9 +44,9 @@ const Navbar: React.FC = () => {
           {/* Projects Dropdown */}
           <div className="nav-item relative group">
             <Link href="/projects">
-              <a className={`text-primary hover:text-white font-medium transition-colors py-2 ${location === '/projects' ? 'text-white' : ''}`}>
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/projects' ? 'text-white' : ''}`}>
                 Projetos
-              </a>
+              </div>
             </Link>
             
             {/* Dropdown menu */}
@@ -54,10 +54,10 @@ const Navbar: React.FC = () => {
               <div className="custom-scrollbar py-2">
                 {projects.map((project) => (
                   <Link key={project.id} href={`/projects/${project.id}`}>
-                    <a className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors">
+                    <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
                       <div className="font-medium text-primary">{project.title}</div>
                       <div className="text-sm text-gray-300 mt-1">{project.description}</div>
-                    </a>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -67,9 +67,9 @@ const Navbar: React.FC = () => {
           {/* Articles Dropdown */}
           <div className="nav-item relative group">
             <Link href="/articles">
-              <a className={`text-primary hover:text-white font-medium transition-colors py-2 ${location === '/articles' ? 'text-white' : ''}`}>
+              <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/articles' ? 'text-white' : ''}`}>
                 Artigos
-              </a>
+              </div>
             </Link>
             
             {/* Dropdown menu */}
@@ -77,10 +77,10 @@ const Navbar: React.FC = () => {
               <div className="custom-scrollbar py-2">
                 {articles.map((article) => (
                   <Link key={article.id} href={`/articles/${article.id}`}>
-                    <a className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors">
+                    <div className="block px-4 py-3 hover:bg-black/30 border-b border-primary/10 transition-colors cursor-pointer">
                       <div className="font-medium text-primary">{article.title}</div>
                       <div className="text-sm text-gray-300 mt-1">{article.description}</div>
-                    </a>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -89,42 +89,42 @@ const Navbar: React.FC = () => {
 
           {/* Resume Link */}
           <Link href="/resume">
-            <a className={`text-primary hover:text-white font-medium transition-colors py-2 ${location === '/resume' ? 'text-white' : ''}`}>
+            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/resume' ? 'text-white' : ''}`}>
               Currículo
-            </a>
+            </div>
           </Link>
           
           {/* About Me Link */}
           <Link href="/about">
-            <a className={`text-primary hover:text-white font-medium transition-colors py-2 ${location === '/about' ? 'text-white' : ''}`}>
+            <div className={`text-primary hover:text-white font-medium transition-colors py-2 cursor-pointer ${location === '/about' ? 'text-white' : ''}`}>
               Sobre mim
-            </a>
+            </div>
           </Link>
         </div>
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-bg-dark border-b border-primary/20 z-50">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-bg-dark border-b border-primary/20 z-50 shadow-lg">
             <div className="flex flex-col p-4">
               <Link href="/projects">
-                <a className="text-primary hover:text-white font-medium py-3 border-b border-primary/10">
+                <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Projetos
-                </a>
+                </div>
               </Link>
               <Link href="/articles">
-                <a className="text-primary hover:text-white font-medium py-3 border-b border-primary/10">
+                <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Artigos
-                </a>
+                </div>
               </Link>
               <Link href="/resume">
-                <a className="text-primary hover:text-white font-medium py-3 border-b border-primary/10">
+                <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
                   Currículo
-                </a>
+                </div>
               </Link>
               <Link href="/about">
-                <a className="text-primary hover:text-white font-medium py-3">
+                <div className="text-primary hover:text-white font-medium py-3 cursor-pointer">
                   Sobre mim
-                </a>
+                </div>
               </Link>
             </div>
           </div>
