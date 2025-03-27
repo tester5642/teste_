@@ -1,9 +1,13 @@
 import React from 'react';
 import NetworkBackground from '../components/NetworkBackground';
 import { skills } from '../data/skills';
+import { personalInfo } from '../data/personal-info';
 import * as LucideIcons from 'lucide-react';
 
 const Resume: React.FC = () => {
+  // Carrega as informações pessoais
+  const { workExperience, education, certifications } = personalInfo;
+  
   // Função para mapear o nível de habilidade para texto e largura da barra
   const getSkillLevelInfo = (level: number) => {
     const levelMap = {
@@ -30,6 +34,7 @@ const Resume: React.FC = () => {
     if (!iconName) return LucideIcons.Code;
     return (LucideIcons as any)[iconName] || LucideIcons.Code;
   };
+  
   return (
     <NetworkBackground>
       <div className="content-overlay min-h-screen">
@@ -42,27 +47,19 @@ const Resume: React.FC = () => {
               <h3 className="text-2xl font-bold mb-6 text-primary">Experiência Profissional</h3>
               
               <div className="space-y-8">
-                <div className="border-l-4 border-primary pl-6">
-                  <h4 className="text-xl font-bold mb-1">Analista de Dados Sênior</h4>
-                  <p className="text-primary mb-2">TechDataCorp • 2020 - Presente</p>
-                  <p className="text-gray-300 mb-4">Responsável pela implementação de soluções de análise avançada de dados e desenvolvimento de modelos preditivos para o setor de varejo.</p>
-                  <ul className="list-disc list-inside text-gray-300 space-y-1">
-                    <li>Desenvolvimento de dashboards utilizando PowerBI e Tableau</li>
-                    <li>Implementação de pipeline de ETL com Apache Airflow</li>
-                    <li>Criação de modelos de machine learning para previsão de demanda</li>
-                  </ul>
-                </div>
+                {workExperience.map((job, index) => (
+                  <div key={index} className={`border-l-4 ${index === 0 ? 'border-primary' : 'border-primary/70'} pl-6`}>
+                    <h4 className="text-xl font-bold mb-1">{job.title}</h4>
+                    <p className={`${index === 0 ? 'text-primary' : 'text-primary/90'} mb-2`}>{job.company} • {job.period}</p>
+                    <p className="text-gray-300 mb-4">{job.description}</p>
+                  </div>
+                ))}
                 
-                <div className="border-l-4 border-primary/70 pl-6">
-                  <h4 className="text-xl font-bold mb-1">Cientista de Dados</h4>
-                  <p className="text-primary/90 mb-2">DataInsights • 2018 - 2020</p>
-                  <p className="text-gray-300 mb-4">Atuei no time de ciência de dados aplicando técnicas avançadas de análise para resolver problemas de negócio.</p>
-                  <ul className="list-disc list-inside text-gray-300 space-y-1">
-                    <li>Análise exploratória de dados para identificação de padrões</li>
-                    <li>Desenvolvimento de algoritmos de clustering para segmentação de clientes</li>
-                    <li>Implementação de sistemas de recomendação baseados em ML</li>
-                  </ul>
-                </div>
+                {workExperience.length === 0 && (
+                  <div className="text-gray-400 italic">
+                    <p>Adicione sua experiência profissional editando o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code></p>
+                  </div>
+                )}
               </div>
             </div>
             
@@ -71,19 +68,48 @@ const Resume: React.FC = () => {
               <h3 className="text-2xl font-bold mb-6 text-primary">Formação Acadêmica</h3>
               
               <div className="space-y-6">
-                <div className="border-l-4 border-primary pl-6">
-                  <h4 className="text-xl font-bold mb-1">Mestrado em Ciência de Dados</h4>
-                  <p className="text-primary mb-2">Universidade Federal • 2017 - 2019</p>
-                  <p className="text-gray-300">Dissertação sobre "Técnicas Avançadas de Machine Learning Aplicadas à Análise Preditiva"</p>
-                </div>
+                {education.map((edu, index) => (
+                  <div key={index} className={`border-l-4 ${index === 0 ? 'border-primary' : 'border-primary/70'} pl-6`}>
+                    <h4 className="text-xl font-bold mb-1">{edu.degree}</h4>
+                    <p className={`${index === 0 ? 'text-primary' : 'text-primary/90'} mb-2`}>{edu.institution} • {edu.period}</p>
+                    <p className="text-gray-300">{edu.description}</p>
+                  </div>
+                ))}
                 
-                <div className="border-l-4 border-primary/70 pl-6">
-                  <h4 className="text-xl font-bold mb-1">Bacharelado em Ciência da Computação</h4>
-                  <p className="text-primary/90 mb-2">Universidade Estadual • 2013 - 2017</p>
-                  <p className="text-gray-300">TCC: "Algoritmos de Aprendizado de Máquina para Processamento de Linguagem Natural"</p>
-                </div>
+                {education.length === 0 && (
+                  <div className="text-gray-400 italic">
+                    <p>Adicione sua formação acadêmica editando o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code></p>
+                  </div>
+                )}
               </div>
             </div>
+            
+            {/* Certifications Section */}
+            {certifications && certifications.length > 0 && (
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold mb-6 text-primary">Certificações</h3>
+                
+                <div className="space-y-4">
+                  {certifications.map((cert, index) => (
+                    <div key={index} className="border-l-4 border-primary/60 pl-6">
+                      <h4 className="text-xl font-bold mb-1">{cert.name}</h4>
+                      <p className="text-primary/80 mb-2">{cert.issuer} • {cert.date}</p>
+                      {cert.url && (
+                        <a 
+                          href={cert.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-primary hover:underline inline-flex items-center"
+                        >
+                          <LucideIcons.ExternalLink size={14} className="mr-1" />
+                          Ver certificado
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             
             {/* Skills Section */}
             <div>
@@ -121,6 +147,17 @@ const Resume: React.FC = () => {
                 ))}
               </div>
             </div>
+          </div>
+          
+          {/* Nota para o usuário */}
+          <div className="mt-8 p-6 bg-primary/10 border border-primary/30 rounded-lg">
+            <h3 className="text-xl font-bold mb-2 text-primary">Para personalizar esta página:</h3>
+            <p className="text-gray-300 mb-2">
+              1. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code> para atualizar suas experiências profissionais, formação e certificações.
+            </p>
+            <p className="text-gray-300 mb-2">
+              2. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/skills.ts</code> para atualizar suas habilidades e competências.
+            </p>
           </div>
         </section>
       </div>

@@ -2,17 +2,42 @@ export interface Skill {
   id: string;
   name: string;
   category: string;
-  level: number; // 1-5 para indicar proficiência
+  level: number; // 1-5 para indicar proficiência (1=básico, 5=especialista)
   iconName?: string;
 }
 
+/**
+ * HABILIDADES - EDITE AQUI
+ * 
+ * Adicione, modifique ou remova habilidades conforme necessário.
+ * Cada habilidade deve seguir a estrutura do exemplo abaixo.
+ * 
+ * COMO ADICIONAR UMA NOVA HABILIDADE:
+ * 1. Copie um bloco de habilidade existente
+ * 2. Cole no final da lista (antes do colchete de fechamento)
+ * 3. Altere os dados para sua nova habilidade
+ * 4. Adicione uma vírgula após a habilidade anterior
+ * 
+ * ÍCONES DISPONÍVEIS (da biblioteca Lucide):
+ * - Code: Para linguagens de programação
+ * - Database: Para bancos de dados
+ * - BarChart: Para análise estatística
+ * - PieChart: Para visualização de dados
+ * - LayoutDashboard: Para ferramentas de BI
+ * - Table: Para manipulação de dados
+ * - Brain: Para machine learning
+ * - Network: Para deep learning/redes neurais
+ * - Cloud: Para serviços de cloud
+ * - GitBranch: Para versionamento e workflow
+ */
+
 export const skills: Skill[] = [
   {
-    id: 'python',
-    name: 'Python',
-    category: 'Linguagens de Programação',
-    level: 5,
-    iconName: 'Code'
+    id: 'python', // EDITE: ID único para a habilidade
+    name: 'Python', // EDITE: Nome da habilidade
+    category: 'Linguagens de Programação', // EDITE: Categoria da habilidade
+    level: 5, // EDITE: Nível de proficiência de 1 a 5
+    iconName: 'Code' // EDITE: Nome do ícone (veja a lista acima)
   },
   {
     id: 'sql',
@@ -77,4 +102,14 @@ export const skills: Skill[] = [
     level: 4,
     iconName: 'GitBranch'
   }
+  
+  // EDITE: Adicione suas novas habilidades aqui!
+  // Não esqueça da vírgula após a última habilidade existente
+  // {
+  //   id: "nova-habilidade",
+  //   name: "Nome da Habilidade",
+  //   category: "Categoria",
+  //   level: 3,
+  //   iconName: "Code" // Use qualquer ícone da lista acima
+  // }
 ];

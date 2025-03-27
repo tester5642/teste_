@@ -1,8 +1,12 @@
 import React from 'react';
 import NetworkBackground from '../components/NetworkBackground';
-import { User, Linkedin, Github, Twitter } from 'lucide-react';
+import { User, Linkedin, Github, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { personalInfo } from '../data/personal-info';
 
 const About: React.FC = () => {
+  // Desestruturação dos dados pessoais do arquivo de configuração
+  const { name, title, bio, socialMedia, email, phone, location } = personalInfo;
+  
   return (
     <NetworkBackground>
       <div className="content-overlay min-h-screen">
@@ -18,42 +22,82 @@ const About: React.FC = () => {
               </div>
               
               <div className="md:w-2/3 p-8">
-                <h3 className="text-2xl font-bold mb-4 text-primary">Matheus Nascimento</h3>
-                <h4 className="text-xl text-gray-300 mb-6">Analista e Cientista de Dados</h4>
+                <h3 className="text-2xl font-bold mb-4 text-primary">{name}</h3>
+                <h4 className="text-xl text-gray-300 mb-6">{title}</h4>
                 
-                <div className="space-y-4 text-gray-300">
-                  <p>
-                    Sou um profissional apaixonado por dados e tecnologia, com mais de 5 anos de experiência 
-                    na implementação de soluções de dados que transformam informações em insights acionáveis.
-                  </p>
-                  <p>
-                    Minha jornada na área de dados começou durante minha graduação em Ciência da Computação, 
-                    onde descobri o poder da análise de dados para resolver problemas complexos. Desde então, 
-                    venho me especializando em técnicas avançadas de análise, visualização e machine learning.
-                  </p>
-                  <p>
-                    Atualmente, trabalho como Analista de Dados Sênior, onde lidero projetos que envolvem 
-                    desde a extração e transformação de dados até a implementação de modelos preditivos 
-                    que ajudam a empresa a tomar decisões baseadas em dados.
-                  </p>
+                {/* Contato */}
+                <div className="flex flex-wrap gap-4 mb-6">
+                  {email && (
+                    <div className="flex items-center text-gray-300">
+                      <Mail className="h-5 w-5 mr-2 text-primary" />
+                      <span>{email}</span>
+                    </div>
+                  )}
+                  
+                  {phone && (
+                    <div className="flex items-center text-gray-300">
+                      <Phone className="h-5 w-5 mr-2 text-primary" />
+                      <span>{phone}</span>
+                    </div>
+                  )}
+                  
+                  {location && (
+                    <div className="flex items-center text-gray-300">
+                      <MapPin className="h-5 w-5 mr-2 text-primary" />
+                      <span>{location}</span>
+                    </div>
+                  )}
                 </div>
                 
+                {/* Biografia */}
+                <div className="space-y-4 text-gray-300">
+                  {bio.split('\n\n').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+                
+                {/* Redes Sociais */}
                 <div className="mt-8">
                   <h4 className="text-xl font-bold mb-4 text-primary">Conecte-se comigo</h4>
                   <div className="flex space-x-4">
-                    <a href="#" className="text-gray-300 hover:text-primary transition-colors">
-                      <Linkedin className="h-8 w-8" />
-                    </a>
-                    <a href="#" className="text-gray-300 hover:text-primary transition-colors">
-                      <Github className="h-8 w-8" />
-                    </a>
-                    <a href="#" className="text-gray-300 hover:text-primary transition-colors">
-                      <Twitter className="h-8 w-8" />
-                    </a>
+                    {socialMedia.linkedin && (
+                      <a href={socialMedia.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
+                        <Linkedin className="h-8 w-8" />
+                      </a>
+                    )}
+                    
+                    {socialMedia.github && (
+                      <a href={socialMedia.github} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
+                        <Github className="h-8 w-8" />
+                      </a>
+                    )}
+                    
+                    {socialMedia.twitter && (
+                      <a href={socialMedia.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
+                        <Twitter className="h-8 w-8" />
+                      </a>
+                    )}
+                    
+                    {socialMedia.instagram && (
+                      <a href={socialMedia.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
+                        <Instagram className="h-8 w-8" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          
+          {/* Nota para o usuário */}
+          <div className="mt-8 p-6 bg-primary/10 border border-primary/30 rounded-lg">
+            <h3 className="text-xl font-bold mb-2 text-primary">Para personalizar esta página:</h3>
+            <p className="text-gray-300 mb-4">
+              Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code> para atualizar suas informações pessoais.
+            </p>
+            <p className="text-gray-300">
+              O arquivo contém campos como seu nome, título, biografia, informações de contato e links para redes sociais.
+            </p>
           </div>
         </section>
       </div>
