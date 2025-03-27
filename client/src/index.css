@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 81 100% 50%;
+  --primary-dark: 81 100% 40%;
+  --bg-dark: 0 0% 7%;
+  --secondary-dark: 0 0% 10%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-color: hsl(var(--bg-dark));
+    color: #f9f9f9;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-primary;
+  }
+}
+
+@layer components {
+  .network-line {
+    stroke: hsl(var(--primary) / 0.2);
+    stroke-width: 1;
+  }
+  
+  .network-dot {
+    fill: hsl(var(--primary) / 0.5);
+  }
+  
+  .hero-title {
+    background: linear-gradient(90deg, hsl(var(--primary)), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .geometric-shape {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary) / 0.2) 0%, 
+      hsl(var(--primary) / 0.05) 100%);
+    border: 1px solid hsl(var(--primary) / 0.2);
+  }
+}
