@@ -1,7 +1,35 @@
 import React from 'react';
 import NetworkBackground from '../components/NetworkBackground';
+import { skills } from '../data/skills';
+import * as LucideIcons from 'lucide-react';
 
 const Resume: React.FC = () => {
+  // Função para mapear o nível de habilidade para texto e largura da barra
+  const getSkillLevelInfo = (level: number) => {
+    const levelMap = {
+      1: { text: 'Básico', width: '20%' },
+      2: { text: 'Básico-Intermediário', width: '40%' },
+      3: { text: 'Intermediário', width: '60%' },
+      4: { text: 'Intermediário-Avançado', width: '80%' },
+      5: { text: 'Avançado', width: '95%' }
+    };
+    return levelMap[level as keyof typeof levelMap] || { text: 'N/A', width: '0%' };
+  };
+
+  // Agrupar habilidades por categoria
+  const skillsByCategory = skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push(skill);
+    return acc;
+  }, {} as Record<string, typeof skills>);
+  
+  // Obter o componente de ícone do Lucide
+  const getIconComponent = (iconName?: string) => {
+    if (!iconName) return LucideIcons.Code;
+    return (LucideIcons as any)[iconName] || LucideIcons.Code;
+  };
   return (
     <NetworkBackground>
       <div className="content-overlay min-h-screen">
@@ -62,95 +90,35 @@ const Resume: React.FC = () => {
               <h3 className="text-2xl font-bold mb-6 text-primary">Habilidades</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-xl font-bold mb-4 text-white">Técnicas</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">Python</span>
-                        <span className="text-primary">Avançado</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '95%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">SQL</span>
-                        <span className="text-primary">Avançado</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '90%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">Machine Learning</span>
-                        <span className="text-primary">Intermediário</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '80%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">Big Data (Spark)</span>
-                        <span className="text-primary">Intermediário</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '75%'}}></div>
-                      </div>
+                {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
+                  <div key={category}>
+                    <h4 className="text-xl font-bold mb-4 text-white">{category}</h4>
+                    <div className="space-y-3">
+                      {categorySkills.map(skill => {
+                        const levelInfo = getSkillLevelInfo(skill.level);
+                        const IconComponent = getIconComponent(skill.iconName);
+                        
+                        return (
+                          <div key={skill.id}>
+                            <div className="flex justify-between mb-1 items-center">
+                              <span className="text-gray-300 flex items-center">
+                                <IconComponent size={16} className="mr-2 text-primary" />
+                                {skill.name}
+                              </span>
+                              <span className="text-primary">{levelInfo.text}</span>
+                            </div>
+                            <div className="w-full bg-gray-700 rounded-full h-2">
+                              <div 
+                                className="bg-primary h-2 rounded-full" 
+                                style={{width: levelInfo.width}}
+                              ></div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
-                </div>
-                
-                <div>
-                  <h4 className="text-xl font-bold mb-4 text-white">Ferramentas</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">Pandas/NumPy</span>
-                        <span className="text-primary">Avançado</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '95%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">PowerBI/Tableau</span>
-                        <span className="text-primary">Avançado</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '85%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">AWS/Azure</span>
-                        <span className="text-primary">Intermediário</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '70%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-gray-300">Docker/Kubernetes</span>
-                        <span className="text-primary">Básico</span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{width: '50%'}}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

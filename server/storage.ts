@@ -391,5 +391,5 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-// Usamos DatabaseStorage para persistência dos dados no PostgreSQL
-export const storage = new DatabaseStorage();
+// Versão estática do site - utilizamos MemStorage para facilitar hospedagem
+export const storage = new MemStorage();
