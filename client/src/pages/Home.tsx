@@ -22,15 +22,15 @@ const Home: React.FC = () => {
             
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <Link href="/projects">
-                <a className="inline-flex items-center px-6 py-3 bg-primary text-bg-dark font-medium rounded-md hover:bg-primary-dark transition-colors">
+                <div className="inline-flex items-center px-6 py-3 bg-primary text-bg-dark font-medium rounded-md hover:bg-primary-dark transition-colors cursor-pointer">
                   Ver Projetos
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+                </div>
               </Link>
               <Link href="/about">
-                <a className="inline-flex items-center px-6 py-3 border border-primary/50 text-primary font-medium rounded-md hover:bg-primary/10 transition-colors">
+                <div className="inline-flex items-center px-6 py-3 border border-primary/50 text-primary font-medium rounded-md hover:bg-primary/10 transition-colors cursor-pointer">
                   Sobre Mim
-                </a>
+                </div>
               </Link>
             </div>
           </div>

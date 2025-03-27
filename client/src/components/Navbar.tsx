@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             </Link>
             
             {/* Dropdown menu */}
-            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60">
+            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
               <div className="custom-scrollbar py-2">
                 {projects.map((project) => (
                   <Link key={project.id} href={`/projects/${project.id}`}>
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
             </Link>
             
             {/* Dropdown menu */}
-            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60">
+            <div className="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-bg-dark border border-primary/20 rounded shadow-lg overflow-y-auto max-h-60 z-[1001] backdrop-blur-sm">
               <div className="custom-scrollbar py-2">
                 {articles.map((article) => (
                   <Link key={article.id} href={`/articles/${article.id}`}>
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-bg-dark border-b border-primary/20 z-50 shadow-lg">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-bg-dark border-b border-primary/20 z-[1001] shadow-lg backdrop-blur-sm">
             <div className="flex flex-col p-4">
               <Link href="/projects">
                 <div className="text-primary hover:text-white font-medium py-3 border-b border-primary/10 cursor-pointer">
