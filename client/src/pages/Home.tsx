@@ -104,16 +104,11 @@ const Home: React.FC = () => {
           )}
         </div>
         
-        {/* Nota para o usuário */}
-        <div className="mt-16 p-6 bg-primary/10 border border-primary/30 rounded-lg max-w-3xl w-full">
-          <h3 className="text-xl font-bold mb-2 text-primary">Para personalizar esta página:</h3>
-          <p className="text-gray-300 mb-2">
-            1. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code> para atualizar suas informações pessoais e o texto do hero.
-          </p>
-          <p className="text-gray-300 mb-2">
-            2. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/skills.ts</code> para atualizar suas habilidades, que serão exibidas automaticamente aqui.
-          </p>
-        </div>
+{/* 
+  Instruções para personalização:
+  1. Edite o arquivo client/src/data/personal-info.ts para atualizar suas informações pessoais e o texto do hero.
+  2. Edite o arquivo client/src/data/skills.ts para atualizar suas habilidades, que serão exibidas automaticamente aqui.
+*/}
       </section>
     </NetworkBackground>
   );

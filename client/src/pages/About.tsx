@@ -89,16 +89,11 @@ const About: React.FC = () => {
             </div>
           </div>
           
-          {/* Nota para o usuário */}
-          <div className="mt-8 p-6 bg-primary/10 border border-primary/30 rounded-lg">
-            <h3 className="text-xl font-bold mb-2 text-primary">Para personalizar esta página:</h3>
-            <p className="text-gray-300 mb-4">
-              Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code> para atualizar suas informações pessoais.
-            </p>
-            <p className="text-gray-300">
-              O arquivo contém campos como seu nome, título, biografia, informações de contato e links para redes sociais.
-            </p>
-          </div>
+{/* 
+  Instruções para personalização:
+  Edite o arquivo client/src/data/personal-info.ts para atualizar suas informações pessoais.
+  O arquivo contém campos como seu nome, título, biografia, informações de contato e links para redes sociais.
+*/}
         </section>
       </div>
     </NetworkBackground>

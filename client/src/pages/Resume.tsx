@@ -149,16 +149,11 @@ const Resume: React.FC = () => {
             </div>
           </div>
           
-          {/* Nota para o usuário */}
-          <div className="mt-8 p-6 bg-primary/10 border border-primary/30 rounded-lg">
-            <h3 className="text-xl font-bold mb-2 text-primary">Para personalizar esta página:</h3>
-            <p className="text-gray-300 mb-2">
-              1. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/personal-info.ts</code> para atualizar suas experiências profissionais, formação e certificações.
-            </p>
-            <p className="text-gray-300 mb-2">
-              2. Edite o arquivo <code className="bg-black/30 px-2 py-1 rounded">client/src/data/skills.ts</code> para atualizar suas habilidades e competências.
-            </p>
-          </div>
+{/* 
+  Instruções para personalização:
+  1. Edite o arquivo client/src/data/personal-info.ts para atualizar suas experiências profissionais, formação e certificações.
+  2. Edite o arquivo client/src/data/skills.ts para atualizar suas habilidades e competências.
+*/}
         </section>
       </div>
     </NetworkBackground>
